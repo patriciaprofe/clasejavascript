@@ -16,5 +16,6 @@ function validarFormulario()
       alert("ingrese un dato");
       return;
     }
-    document.getElementById("respuesta").submit();
+    var formulario = document.getElementById("respuesta");
+    formulario.submit();
 }
