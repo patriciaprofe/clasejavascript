@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+ <style>
+  #randomboton
+  {
+    width: 200px;
+    height:200px;
+  }
+</style>
+</head>
+<body>
+    <button type="button" id="randomboton">Este es un boton grande</button>
+    <p id="colortexto">color</p>
+   <script>
+      
+      window.onload=CargarEventoColor;
+
+      function CargarEventoColor(){
+        let CargarBoton = document.getElementById("randomboton");
+                CargarBoton.onclick = CargarColorRandom;
+      }
+
+      function CargarColorRandom(){
+
+           let colorR = Math.floor(Math.random() * 256);// asigna a colorR la funcion matemática que convierte un numero random() de 256
+           colorR = colorR.toString(16).toUpperCase();// convierte en Hexadecimal y mayúscula
+           if (colorR.length < 2){  //si el número tiene un sólo dígito le agrega un 0 adelante
+               colorR="0"+colorR;
+           };
+           let colorG = Math.floor(Math.random() * 256);
+           colorG = colorG.toString(16).toUpperCase();
+           if (colorG.length < 2){
+               colorG="0"+colorG;
+           };
+           let colorB = Math.floor(Math.random() * 256);
+           colorB = colorB.toString(16).toUpperCase();
+           if (colorB.length < 2){
+               colorB="0"+colorB;
+           };
+           const COLORBOTON = "#"+colorR+colorG+colorB; //define adiciona a la cadena los tres colores
+           document.getElementById("randomboton").style.background = COLORBOTON; // incluye los colores en el estilo
+           document.getElementById("colortexto").innerHTML= "color: "+ COLORBOTON;
+
+        } 
+    </script>
+</body>
+</html>
