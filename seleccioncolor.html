@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar color</title>
+    <style>
+        #espaciocolor{
+            width: 200px;
+            height: 200px;
+            border: solid 2px;
+            border-radius: 30%;
+        }
+    </style>
+</head>
+<body>
+    <form id="colores">
+        <input type="radio" id="colorR" name="color" value="ROJO">
+        <label for="coloR">ROJO</label><br>
+        <input type="radio" id="colorG" name="color" value="VERDE">
+        <label for="colorG">VERDE</label><br>
+        <input type="radio" id="colorB" name="color" value="AZUL">
+        <label for="colorB">AZUL</label>
+   </form> 
+   <canvas id="espaciocolor">
+   </canvas>
+   <script>
+       window.onload = CargarCambiaColor;
+       function CargarCambiaColor()
+       {
+        let botoncolorR =  document.getElementById("colorR");
+        botoncolorR.onchange = CambiaColor;
+        let botoncolorG =  document.getElementById("colorG");
+        botoncolorG.onchange = CambiaColor;
+        let botoncolorB =  document.getElementById("colorB");
+        botoncolorB.onchange = CambiaColor;
+       }
+       function CambiaColor(){
+       if (document.getElementById("colorR").checked == true)
+       {
+        document.getElementById("espaciocolor").style.background = "#FF0000";
+       }
+         else if (document.getElementById("colorG").checked == true)
+        {
+        document.getElementById("espaciocolor").style.background = "#00FF00";
+        } else{
+            document.getElementById("espaciocolor").style.background = "#0000FF";
+        }
+       }
+       
+       
+
+   </script>
+</body>
+</html>
