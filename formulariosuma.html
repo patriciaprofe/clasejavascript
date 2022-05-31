@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #MostrarPorcionesPollo{
+            display: none;
+        }
+        #MostrarPorcionesCarne{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="espacioformulario">
+         <form action="#" method="get" id="formulariopersonal">
+              <label for="ComidaPollo">
+                  Pollo al horno con Papas
+              </label>
+              <input type="checkbox" id="ComidaPollo" >
+              <div id="MostrarPorcionesPollo"> 
+                <label for="cantporcionpollo"> Porciones</label>
+                <select id="cantporcionpollo">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select> <br>
+               </div> 
+               <br>
+              <label for="ComidaCarne">
+                Empanadas de Carne
+              </label>
+              <input type="checkbox" id="ComidaCarne" > <br>
+              <div id="MostrarPorcionesCarne">
+                  <label for="cantporcioncarne"> Porciones</label>
+                  <select id="cantporcioncarne">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                  
+              </div>
+               <div id="preciototal">
+
+               </div>
+              <button type="submit">Enviar </button>
+         </form>
+         <script>
+             //Cuando ocurre el evento página Web cargada el navegador llama a la función DocumentoCargado()
+             window.onload=DocumentoCargado; 
+
+             //En esta función se capturan todos los eventos requeridos por el script
+             function DocumentoCargado(){
+                let checkboxPollo = document.getElementById("ComidaPollo"); //obtiene los elementos del documento html y los asigna a variables
+                let checkboxCarne = document.getElementById("ComidaCarne"); 
+                let cantporcionespollo = document.getElementById("cantporcionpollo");
+                let cantporcionescarne = document.getElementById("cantporcioncarne");
+                cantporcionespollo.onchange = selectpolloporcion; // Se ejecuta la función selectpolloporcion() cuando cuando ocurre el evento
+                cantporcionescarne.onchange = selectcarneporcion;
+                checkboxPollo.onclick = checkboxPolloApretado; 
+                checkboxCarne.onclick = checkboxCarneApretado;
+                MostrarPrecioTotal(); // llama a la función 
+             }
+             //Cuando el usuario aprieta el checkbox pollo, se debe mostrar u ocultar el objeto select
+             function checkboxPolloApretado()
+             {
+                if(document.getElementById("ComidaPollo").checked == true)
+                {
+                    document.getElementById("MostrarPorcionesPollo").style.display = "block";
+                }
+                else
+                {
+                    document.getElementById("MostrarPorcionesPollo").style.display = "none";
+                }
+                MostrarPrecioTotal();
+             }
+             function checkboxCarneApretado()
+             {
+                if(document.getElementById("ComidaCarne").checked == true)
+                {
+                    document.getElementById("MostrarPorcionesCarne").style.display = "block";
+                }
+                else
+                {
+                    document.getElementById("MostrarPorcionesCarne").style.display = "none";
+                }
+                MostrarPrecioTotal();
+             }
+             // En base a los checkbox y los objetos select, esta función calcula el precio total
+             function MostrarPrecioTotal()
+             {
+               let precio = 0;
+
+               if (document.getElementById("ComidaPollo").checked == true)
+               {
+                   precio += 500 * document.getElementById("cantporcionpollo").value;
+               }
+
+               if (document.getElementById("ComidaCarne").checked == true)
+               {
+                   precio += 700 * document.getElementById("cantporcioncarne").value;
+               }
+               document.getElementById("preciototal").innerHTML= "precio: $" + precio;
+             }
+             //Se ejecuta cuando cambia el valor del select
+             function selectcarneporcion()
+             {
+               MostrarPrecioTotal();
+             }
+             function selectpolloporcion()
+             {
+               MostrarPrecioTotal();
+             }
+
+         </script>
+    </div>
+</body>
+</html>
